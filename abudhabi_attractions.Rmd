@@ -1,0 +1,108 @@
+---
+title: "Abu Dhabi Tourist Destinations"
+author: "jsuk"
+date: "12/12/2021"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Overview
+
+I would like to introduce some tourist destinations in my current place of residence - Abu Dhabi, United Arab Emirates.
+To effectively show the places, I will make a simple interactive map using 'leaflet' package in R.
+
+The attractions that I would like to represent on a map includes: <br>
+Sheikh Zayed Grand Mosque, Emirates Palace, Ferrari World, Louvre, Qasr AlHosn, Marina Circuit,
+Qasr Alwatan, Mangrove National Park.
+
+The places will be marked on a map with coordinates, small icon images and pop ups (website links and one-line description.
+
+---
+
+## Create a map
+
+```{r, echo=FALSE, comment="", message=FALSE}
+library(leaflet); library(dplyr);
+```
+
+```{r, echo=FALSE}
+# Prepare data for places
+
+ad_places = data.frame(
+  name = c('Qasr Al Watan', 'Emirates Palace', 'Qasr AlHosn', 'Sheikh Zayed Grand Mosque', 
+           'Mangrove National Park', 'Louvre', 'Ferrari World', 'Marina Circuit'),
+  lat = c(24.4627203,24.4616485,24.4822419,24.4128383,24.4560699,24.5337003,24.4835529,24.4699462),
+  lng = c(54.3035231,54.3150946,54.3525343,54.4727867,54.4156119,54.3959481,54.6029024,54.603318)
+)
+
+```
+
+```{r, echo=FALSE, comment=""}
+# Create icon set
+
+icon_urls = c('https://encrypted-tbn2.gstatic.com/licensed-image?q=tbn:ANd9GcQa0QD_4_PepH0ieOtU8ZmNa_IBtIOIUeScek-cn5ovN-bDRuDRe6-n_XOwo0hWvtZfB6KNY4GjAQ4EMWEmmuYs4A',
+              'https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcSXEB3HjikNzvVUrVXUThme9Z2ifP-Z7axRaXjJF_vJPW3if4zAVnnimrRPEm9HIYUzILfiIaqxgGskJp3AQqgIfQ',
+              'https://encrypted-tbn3.gstatic.com/images?q=tbn:ANd9GcS5AXcMn8bxfHKH6GHb-HvpDi5Wf2PibF-gaEU-QxqSDN3O_YfaW3WlGP7iFILpl2hm8OeE6--8X2S2BXriG35FXw',
+              'https://encrypted-tbn0.gstatic.com/licensed-image?q=tbn:ANd9GcTMGB-l_RoCvjF50Fw9Akw2QGA0Rrcsr_P_wLYsn8lbfQXfC4UHYWWpXf6MbImvMFP9A-6W2glMnqSOP8xJxQPaKA',
+              'https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcSmvOcNZFNZSJeZmPDJTvr63OFyW10sQE4HEwuX6pUr_h5YXNml90q_oN5If-1TZtKZwoTfMdcHSTCBq2gZr9h7Og',
+              'https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcSk0_iNHBFa5tGQ6JWO5TAg6wXj6955CVd-cDh9rzasPPn7SMNUy2yjBjwl0yEFN7kUmHauxte3PgqrfvQrmoLeKg',
+              'https://encrypted-tbn3.gstatic.com/images?q=tbn:ANd9GcQsx2RKxKzDSbCEOR4h8t4Xug8EhSeAWqmttHPoDFZjo0XJ2awMttolW8wJkj11cAm8scqTmIDzTABQB1THOzuraw',
+              'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT2ydFFOqEXGDRfatJsPNFBlScOH0WV6Iompt6qIc-UbBqvP1leE5tSku_RYgnR18wtLTi7sZrH8q7ojLYnT7_ALA'
+)
+
+
+icon_set = iconList(
+  m1 = makeIcon(icon_urls[1], iconWidth=64, iconHeight=64),
+  m2 = makeIcon(icon_urls[2], iconWidth=64, iconHeight=64),
+  m3 = makeIcon(icon_urls[3], iconWidth=64, iconHeight=64),
+  m4 = makeIcon(icon_urls[4], iconWidth=64, iconHeight=64),
+  m5 = makeIcon(icon_urls[5], iconWidth=64, iconHeight=64),
+  m6 = makeIcon(icon_urls[6], iconWidth=64, iconHeight=64),
+  m7 = makeIcon(icon_urls[7], iconWidth=64, iconHeight=64),
+  m8 = makeIcon(icon_urls[8], iconWidth=64, iconHeight=64)
+)
+
+```
+
+```{r, echo=FALSE, comment=""}
+# Create pop ups
+
+ad_popups= c(
+  "<a href='https://www.qasralwatan.ae/en/'>Qasr Al Watan</a><br><span>Marble & limestone presidental palace</span>",
+  "<a href='https://www.mandarinoriental.com/abu-dhabi/emirates-palace/luxury-hotel'>Emirates Palace</a><br><span>Palatial hotel with a private marina</span>",
+  "<a href='https://qasralhosn.ae/'>Qasr AlHosn</a><br><span>Landmark 18th-century palace & fort</span>",
+  "<a href='https://www.szgmc.gov.ae/en/'>Sheikh Zayed Grand Mosque</a><br><span>Iconic landmark with 82 white domes</span>",
+  "<a href='https://park.jubailisland.ae/'>Mangrove with many birds and watersports/a>",
+  "<a href='https://www.louvreabudhabi.ae/'>Louvre Abu Dhabi</a><br><span>Unique museum for international artwork</span>",
+  "<a href='http://www.ferrariworldabudhabi.com'>Ferrari World</a><br><span>M<otorsport-themed entertainment complex</span>",
+  "<a href='https://www.yasmarinacircuit.com/en/g'>Marina Circuit</a><br><span>Formula 1, auto racing and marina</span>"
+)
+
+```
+
+```{r fig.alt="Abu Dhabi Tourist Destination Map", out.width="100%"}
+# Create interactive plots 
+# with data and attributes constructed above
+
+ad_places %>% 
+  leaflet() %>% 
+  addTiles() %>% 
+  addMarkers(lat=ad_places$lat, lng=ad_places$lng, icon = icon_set, popup = ad_popups, 
+             clusterOptions = markerClusterOptions()) %>% 
+  addCircles(lat=ad_places$lat, lng=ad_places$lng)
+
+```
+
+
+---
+
+## Acknowledgement
+
+Each information are retrieved from:
+
+- Descriptions, website Links and image urls:  [Google Things To Do](https://bit.ly/3lWXOKo)
+- Coordinates: Google Maps
+
