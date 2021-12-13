@@ -83,9 +83,11 @@ ad_popups= c(
 
 ```
 
+The below code block is just to show how the plot is constructed. For more details, please refer to `abudhabi_attractions.Rmd` as they are hidden from this slide.
+
 ```{r fig.alt="Abu Dhabi Tourist Destination Map", out.width="100%"}
 # Create interactive plots 
-# with data and attributes constructed above
+# with data and attributes constructed in the 'abudhabi_attractions.Rmd'
 
 ad_places %>% 
   leaflet() %>% 
