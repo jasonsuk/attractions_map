@@ -10,6 +10,6 @@ The main package used is `leaflet.`
 
 The maps are deployed on Github page. Click the below link to access it. The actual R code blocks used can be found in `abudhabi_attractions.Rmd` 
 
-- <a href="https://jasonsuk.github.io/attractions_map/abudhabi_attractions.html" target="_blank">Abu Dhabi</a>
+- <a href="https://jasonsuk.github.io/attractions_map/index.html" target="_blank">Abu Dhabi</a>
 
 
