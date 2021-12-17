@@ -75,9 +75,9 @@ ad_popups= c(
   "<a href='https://www.mandarinoriental.com/abu-dhabi/emirates-palace/luxury-hotel'>Emirates Palace</a><br><span>Palatial hotel with a private marina</span>",
   "<a href='https://qasralhosn.ae/'>Qasr AlHosn</a><br><span>Landmark 18th-century palace & fort</span>",
   "<a href='https://www.szgmc.gov.ae/en/'>Sheikh Zayed Grand Mosque</a><br><span>Iconic landmark with 82 white domes</span>",
-  "<a href='https://park.jubailisland.ae/'>Mangrove with many birds and watersports/a>",
+  "<a href='https://visitabudhabi.ae/en/where-to-go/parks-and-zoos/mangrove-national-park'>Mangrove National Park</a><br><span>Mangrove with many birds and watersports</span>",
   "<a href='https://www.louvreabudhabi.ae/'>Louvre Abu Dhabi</a><br><span>Unique museum for international artwork</span>",
-  "<a href='http://www.ferrariworldabudhabi.com'>Ferrari World</a><br><span>M<otorsport-themed entertainment complex</span>",
+  "<a href='http://www.ferrariworldabudhabi.com'>Ferrari World</a><br><span>Motorsport-themed entertainment complex</span>",
   "<a href='https://www.yasmarinacircuit.com/en/g'>Marina Circuit</a><br><span>Formula 1, auto racing and marina</span>"
 )
 
